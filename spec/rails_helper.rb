@@ -10,7 +10,6 @@ ActiveRecord::Migration.maintain_test_schema! if defined?(ActiveRecord::Migratio
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include JSONHelpers
-  config.include LogInHelpers
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
