@@ -19,7 +19,7 @@ class Admin::PostsController < ApplicationController
   def create
     result = Post::Create.call(params: post_params)
 
-    unless result.errors.present?
+    if result.errors.blank?
       respond_to do |format|
         format.html { redirect_to admin_posts_path }
         format.json { render json: result.resource, serializer: PostSerializer, status: :created }
@@ -37,7 +37,7 @@ class Admin::PostsController < ApplicationController
   def update
     result = Post::Update.call(params: post_params, post: @post)
 
-    unless result.errors.present?
+    if result.errors.blank?
       respond_to do |format|
         format.html { redirect_to admin_posts_path }
         format.json { render json: result.resource, serializer: PostSerializer, status: :ok }

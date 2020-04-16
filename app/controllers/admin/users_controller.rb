@@ -17,7 +17,7 @@ class Admin::UsersController < ApplicationController
   def create
     result = User::Create.call(params: user_params)
 
-    unless result.errors.present?
+    if result.errors.blank?
       respond_to do |format|
         format.html { redirect_to admin_users_path }
         format.json { render json: result.resource, serializer: UserSerializer, status: :created }
@@ -35,7 +35,7 @@ class Admin::UsersController < ApplicationController
   def update
     result = User::Update.call(params: user_params, user: @user)
 
-    unless result.errors.present?
+    if result.errors.blank?
       respond_to do |format|
         format.html { redirect_to admin_users_path }
         format.json { render json: result.resource, serializer: UserSerializer, status: :ok }
