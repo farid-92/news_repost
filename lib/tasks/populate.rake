@@ -10,7 +10,7 @@ namespace :db do
       user.save!
     end
 
-
+    # initial news
     dummy :post, 5 do
       post = Post.new
       post.title = FFaker::Lorem.phrase
@@ -18,6 +18,29 @@ namespace :db do
       post.user_id = rand(1..5)
       post.save!
     end
+
+    # news children
+    dummy :post, 10 do
+      post = Post.new
+      post.title = FFaker::Lorem.phrase
+      post.content = FFaker::Lorem.paragraph
+      post.user_id = rand(1..5)
+      post.repost_news_id = rand(1..5)
+      post.save!
+    end
+
+    # news grandchildren
+    dummy :post, 20 do
+      post = Post.new
+      post.title = FFaker::Lorem.phrase
+      post.content = FFaker::Lorem.paragraph
+      post.user_id = rand(1..5)
+      post.repost_news_id = rand(5..15)
+      post.save!
+    end
+
+
+
 
   end
 
